@@ -1,21 +1,24 @@
 #!/bin/bash
 
 create_files() {
-    for i in {1..5}; do
+    for i in {1..5}
+     do
         touch file_$i.txt
     done
     echo "Five text files created successfully."
 }
 
 add_hello_world() {
-    for file in file_*.txt; do
-        echo "Hello world" > $file
+    for file in file_*.txt
+     do
+        echo "Hello iran" > $file
     done
-    echo "Added 'Hello world' to all files."
+    echo "Added 'Hello iran' to all files."
 }
 
 replace_bash() {
-    for file in file_*.txt; do
+    for file in file_*.txt
+     do
         sed -i 's/world/bash/g' $file
     done
     echo "Replaced 'world' with 'bash' in all files."

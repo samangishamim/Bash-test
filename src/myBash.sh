@@ -5,9 +5,7 @@ completed_file="completed_file.txt"
 deleted_file="deleted_file.txt"
 
 create_files() {
-    touch $undone_file $completed_file
-
-    $deleted.txt
+    touch $undone_file $completed_file $deleted_file
         echo "Files created successfully."
     }
 
@@ -16,11 +14,13 @@ create_files() {
        read task
        echo $task >> $undone_file
        echo "Task added successfully."
+
    }
 
    show_undone_tasks() {
        echo "Undone Tasks:"
        cat $undone_file
+       read "press any key" a
    }
 
    mark_task_completed() {
@@ -35,6 +35,7 @@ create_files() {
    show_completed_tasks() {
        echo "Completed Tasks:"
        cat $completed_file
+       read "press any key" a
    }
 
    delete_task() {
@@ -49,7 +50,10 @@ create_files() {
    show_deleted_tasks() {
        echo "Deleted Tasks:"
        cat $deleted_file
+       read "press any key" a
    }
+
+
 
     while true; do
         echo "Menu:"

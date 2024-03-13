@@ -55,17 +55,17 @@ create_files() {
 
    search_file(){
        echo "Enter text to search for:"
-       read inputToFind
-       echo "Searching for '$inputToFind' in files..."
+          read inputToFind
+          echo "Searching for '$inputToFind' in files..."
 
-       echo "Undone Tasks:"
-       grep -i "$inputToFind" $undone_file
+          echo "Undone Tasks:"
+          sed -n "/$inputToFind/p" $undone_file
 
-       echo "Completed Tasks:"
-       grep -i "$inputToFind" $completed_file
+          echo "Completed Tasks:"
+          sed -n "/$inputToFind/p" $completed_file
 
-       echo "Deleted Tasks:"
-       grep -i "$inputToFind" $deleted_file
+          echo "Deleted Tasks:"
+          sed -n "/$inputToFind/p" $deleted_file
        read a
    }
 

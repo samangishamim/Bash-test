@@ -20,22 +20,22 @@ create_files() {
    show_undone_tasks() {
        echo "Undone Tasks:"
        cat $undone_file
-       read "press any key" a
+       read a
    }
 
    mark_task_completed() {
-       echo "Enter task number to mark as completed:"
-       read task_num
-       task=$(sed -n "${task_num}p" $undone_file)
-       sed -i "${task_num}d" $undone_file
-       echo $task >> $completed_file
-       echo "Task marked as completed."
+        echo "Enter task number to mark as completed:"
+           read task_num
+           task=$(sed -n "${task_num}p" $undone_file)
+           sed -i "${task_num}d" $undone_file
+           echo $task >> $completed_file
+           echo "Task marked as completed."
    }
 
    show_completed_tasks() {
        echo "Completed Tasks:"
        cat $completed_file
-       read "press any key" a
+       read a
    }
 
    delete_task() {
@@ -50,9 +50,24 @@ create_files() {
    show_deleted_tasks() {
        echo "Deleted Tasks:"
        cat $deleted_file
-       read "press any key" a
+       read a
    }
 
+   search_file(){
+       echo "Enter text to search for:"
+       read inputToFind
+       echo "Searching for '$inputToFind' in files..."
+
+       echo "Undone Tasks:"
+       grep -i "$inputToFind" $undone_file
+
+       echo "Completed Tasks:"
+       grep -i "$inputToFind" $completed_file
+
+       echo "Deleted Tasks:"
+       grep -i "$inputToFind" $deleted_file
+       read a
+   }
 
 
     while true; do
@@ -63,7 +78,8 @@ create_files() {
         echo "4. Show completed tasks"
         echo "5. Delete a task"
         echo "6. Show deleted tasks"
-        echo "7. Exit"
+        echo "7. Search the file"
+        echo "8. Exit"
 
         read choice
         case $choice in
@@ -73,7 +89,8 @@ create_files() {
             4) show_completed_tasks;;
             5) delete_task;;
             6) show_deleted_tasks;;
-            7) break;;
+            7) search_file;;
+            8) break;;
             *) echo "Invalid option";;
         esac
     done
